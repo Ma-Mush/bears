@@ -22,7 +22,7 @@ async def working(event):
         m = await client.send_message(event.chat.id, "Скачиваю...")
         await client.download_file(event.message, f"{event.chat.id}.zip")
         await m.edit("Обработка...")
-        resp = archive(f"{event.chat_id}.zip")
+        resp = await archive(f"{event.chat_id}")
         if resp[0]:
             await client.send_file(event.chat.id, resp[2], caption=f"Найдено медведей {resp[1]}")
         else:
