@@ -17,7 +17,6 @@ async def archive(name):
                 img_hsv = cv2.cvtColor(img, cv2.COLOR_RGB2HSV)
                 mask = cv2.inRange(img_hsv, (44, 10, 20), (60, 20, 80))
                 position = np.unravel_index(np.argmax(mask), mask.shape)
-                print(position)
                 y=position[0]-100
                 x=position[1]-100
                 if (x, y) == (-100, -100): 
@@ -25,9 +24,12 @@ async def archive(name):
                 else:
                     ch += 1
                     cv2.rectangle(img, (x,y), (x+200,y+200), (255, 0, 0), 20)
-                    with zipfile.ZipFile(f"ret_{name}", "w") as zip:
-                        zip.write(img)
-            return True, ch, f"ret_{name}"
+                    with zipfile.ZipFile(f"ret_{name}.zip", "w") as zip:
+                        cv2.resize(img, (1920, 1080), interpolation = cv2.INTER_AREA)
+                        cv2.imwrite(f"./{name}/{file}", img)
+                        zip.write(f"./{name}/{file}")
+            os.remove(name+".zip")
+            return True, ch, f"ret_{name}.zip"
         except Exception as e:
             return False, f"Ошибка в архиве, необходимо отправить архив с фотографиями для поиска медведей \nError - {e}"
     else:

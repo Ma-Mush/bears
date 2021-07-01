@@ -1,5 +1,5 @@
 from telethon import events, TelegramClient 
-from work import archive
+from work import archive, os
 from bot_settings import app_id, app_hash, bot_token
 from time import time 
 
@@ -25,8 +25,9 @@ async def working(event):
         resp = await archive(f"{event.chat_id}")
         if resp[0]:
             await client.send_file(event.chat.id, resp[2], caption=f"Найдено медведей {resp[1]}")
+            os.remove(resp[2])
         else:
             await client.send_message(event.chat.id, resp[1])
-        await m.edit(f"Затрачено времени - {time() - t} секунд")
+        await m.edit(f"Затрачено времени - {round(time() - t, 2)} секунд")
 
 client.run_until_disconnected()
