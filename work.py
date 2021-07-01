@@ -11,7 +11,7 @@ async def archive(name):
             fzip.extractall(name)
             fzip.close()
             for file in [i for i in os.walk(f"./{name}/")][0][2]:
-                with zipfile.ZipFile(f"ret_{name}", "w") as zip:
+                with zipfile.ZipFile(f"ret_{name}.zip", "w") as zip:
                     pass #create zip
                 img = cv2.imread(f'./{name}/{file}')
                 img_hsv = cv2.cvtColor(img, cv2.COLOR_RGB2HSV)
