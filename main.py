@@ -18,10 +18,10 @@ async def start(event):
 @client.on(events.NewMessage())
 async def working(event):
     if event.message.media != None:
-        t = time()
         m = await client.send_message(event.chat.id, "Скачиваю...")
         await client.download_file(event.message, f"{event.chat.id}.zip")
         await m.edit("Обработка...")
+        t = time()
         resp = await archive(f"{event.chat_id}")
         if resp[0]:
             await client.send_file(event.chat.id, resp[2], caption=f"Найдено медведей {resp[1]}")
