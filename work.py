@@ -24,7 +24,7 @@ async def archive(name):
                 else:
                     ch += 1
                     cv2.rectangle(img, (x,y), (x+200,y+200), (255, 0, 0), 20)
-                    with zipfile.ZipFile(f"ret_{name}.zip", "w") as zip:
+                    with zipfile.ZipFile(f"ret_{name}.zip", "a") as zip:
                         cv2.resize(img, (1920, 1080), interpolation = cv2.INTER_AREA)
                         cv2.imwrite(f"./{name}/{file}", img)
                         zip.write(f"./{name}/{file}")
