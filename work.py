@@ -26,7 +26,6 @@ async def archive(name):
                     ch += 1
                     cv2.rectangle(img, (x,y), (x+200,y+200), (255, 0, 0), 20)
                     with zipfile.ZipFile(f"ret_{name}", "w") as zip:
-                        cv2.resize(img, (1920, 1080), interpolation = cv2.INTER_AREA)
                         zip.write(img)
             return True, ch, f"ret_{name}"
         except Exception as e:
