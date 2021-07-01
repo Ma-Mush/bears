@@ -1,9 +1,10 @@
 from telethon import events, TelegramClient 
 from work import archive
+from bot_setting import *
 from time import time 
 
-client = TelegramClient("bear", "your app id",
-    "your app hash").start(bot_token="your bot token")
+client = TelegramClient("bear", app_id,
+    app_hash).start(bot_token=bot_token)
 client.parse_mode = 'html'
 
 def command(*args):
