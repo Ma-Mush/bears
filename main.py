@@ -1,6 +1,6 @@
 from telethon import events, TelegramClient 
 from work import archive
-from bot_setting import app_id, app_hash, bot_token
+from bot_settings import app_id, app_hash, bot_token
 from time import time 
 
 client = TelegramClient("bear", app_id,
