@@ -26,7 +26,7 @@ def archive(name):
                     with zipfile.ZipFile(f"ret_{name}", "w") as zip:
                         zip.write(cv2.resize(img, (1920, 1080), interpolation = cv2.INTER_AREA))
             return True, ch, f"ret_{name}"
-        except:
-            return False, "Ошибка в архиве, необходимо отправить архив с фотографиями для поиска медведей"
+        except Exception as e:
+            return False, f"Ошибка в архиве, необходимо отправить архив с фотографиями для поиска медведей \nError - {e}"
     else:
         return False, "Ошибка, этот файл не является архивом"
