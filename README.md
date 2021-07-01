@@ -19,7 +19,7 @@ Telegram-бот [@bearfindbot](https://t.me/bearfindbot)
 	python3 -m venv venv
 	venv\Scripts\activate.bat
 	~~~
-	##### Linux
+	##### Linux:
 	~~~
 	cd path/to/project
 	python3 -m venv venv
